@@ -1,9 +1,9 @@
 const File = require('../models/file')
 
-class fileController {
+class FileController {
     static findAll (req, res, next) {
-        File.find().exec()
         let filesData = []
+        File.find().exec()
         .then(files => {
             files.forEach(file => {
                 const { url, user_id, rating } = file
@@ -28,4 +28,4 @@ class fileController {
     }
 }
 
-module.exports = fileController
+module.exports = FileController

@@ -13,7 +13,7 @@ module.exports = {
         let mainOption = {
                 from : process.env.GMAIL_MAIL,
                 to : receiver,
-                subject : 'Welcome to Fancy To Do by @ericsudhartio',
+                subject : 'Thanks For Registering To TheProject',
                 text : message.msg
         }
 
