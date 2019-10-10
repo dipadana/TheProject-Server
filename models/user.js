@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 const validate = require('mongoose-validator')
+const { hashPassword } = require('../helpers/bcrypt')
 
 const isEmail =
 [
@@ -15,6 +16,7 @@ const isEmail =
 const userSchema = new Schema({
     email: {
         type: String,
+        unique: true,
         required: [true, 'Email Is Required'],
         validate: isEmail
     },
@@ -22,6 +24,11 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Password Is Required']
     }
+})
+
+userSchema.pre('save', function(next) {
+    this.password = hashPassword(this.password)
+    next()
 })
 
 const User = mongoose.model('User', userSchema)

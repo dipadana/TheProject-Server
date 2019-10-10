@@ -9,7 +9,6 @@ const mongoose = require('mongoose')
 const errorHandler = require('./middlewares/errorHandler')
 const routes = require('./routes/index')
 const cors = require('cors')
-const {sendMail} = require('./sendMail');
 const PORT = process.env.PORT
 const app = express()
 
@@ -27,12 +26,6 @@ app.use(express.urlencoded({extended: false}))
 app.use(cors())
 
 //ROUTE
-
-app.post('/',(req,res)=>{
-    // console.log(req.body)
-    const email = req.body.email;
-    sendMail(req.body.email,{ msg : 'masuk ya' });
-})
 
 app.use('/', routes)
 
